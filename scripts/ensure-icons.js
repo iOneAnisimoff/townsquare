@@ -36,10 +36,10 @@ const sets = [
 
 for (const set of sets) {
   if (hasIcons(set.dir)) {
-    console.log(`✓ ${set.name} icons already present, skipping download.`);
+    console.log(`[skip] ${set.name} icons already present, skipping download.`);
     continue;
   }
-  console.log(`↓ Downloading ${set.name} icons...`);
+  console.log(`[download] Downloading ${set.name} icons...`);
   run(`npm run ${set.clone}`);
   run(`npm run ${set.copy}`);
 }
