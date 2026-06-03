@@ -8,8 +8,9 @@
     "copy-unofficial": "npx rimraf ./src/assets/icons/unofficial/ && npx copyfiles -u 3 ./tmp/botc-icons/WEBP/**/* ./src/assets/icons/unofficial && npx copyfiles -u 3 ./tmp/botc-icons/WEBP/* ./src/assets/icons/unofficial/ && npx rimraf ./tmp",
     "clone-official": "npx rimraf ./tmp && git clone https://github.com/ThePandemoniumInstitute/botc-release.git --depth 1 ./tmp/botc-release",
     "copy-official": "npx rimraf ./src/assets/icons/official/ && npx copyfiles -u 4 ./tmp/botc-release/resources/characters/**/* ./src/assets/icons/official/ && npx rimraf ./tmp",
-    "serve": "npm run clone-unofficial && npm run copy-unofficial && npm run clone-official && npm run copy-official && vue-cli-service serve",
-    "build": "npm run clone-unofficial && npm run copy-unofficial && npm run clone-official && npm run copy-official && vue-cli-service build ./src/main.js",
+    "ensure-icons": "node scripts/ensure-icons.js",
+    "serve": "npm run ensure-icons && vue-cli-service serve",
+    "build": "npm run ensure-icons && vue-cli-service build ./src/main.js",
     "lint": "vue-cli-service lint",
     "lint-ci": "vue-cli-service lint --no-fix --max-warnings=0"
   },
