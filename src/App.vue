@@ -45,7 +45,9 @@
 
 <script>
 import { mapState } from "vuex";
-import { version } from "../package.json";
+import packageJSON from "../package.json";
+
+const { version } = packageJSON;
 import TownSquare from "./components/TownSquare";
 import TownInfo from "./components/TownInfo";
 import Menu from "./components/Menu";
