@@ -11,17 +11,17 @@
       @click="toggleModal('reference')"
       icon="address-card"
       class="toggle"
-      title="Show Character Reference"
+      title="Показать справку персонажей"
     />
     <h3>
-      Night Order
+      Порядок ночи
       <br />
       <font-awesome-icon icon="cloud-moon" />
-      {{ edition.name || "Custom Script" }}
+      {{ edition.name || "Свой сценарий" }}
     </h3>
     <div class="night">
       <ul class="first">
-        <li class="headline">First Night</li>
+        <li class="headline">Первая ночь</li>
         <li
           v-for="role in rolesFirstNight"
           :key="role.name"
@@ -70,7 +70,7 @@
         </li>
       </ul>
       <ul class="other">
-        <li class="headline">Other Nights</li>
+        <li class="headline">Остальные ночи</li>
         <li
           v-for="role in rolesOtherNight"
           :key="role.name"
@@ -143,18 +143,19 @@ export default {
       if (duskIndex > 0) {
         rolesFirstNight.push({
           id: "dusk",
-          name: "Dusk",
+          name: "Сумерки",
           firstNight: duskIndex,
-          firstNightReminder: "Start the Night Phase.",
+          firstNightReminder: "Начните ночную фазу.",
           players: [],
         });
       }
       if (dawnIndex > 0) {
         rolesFirstNight.push({
           id: "dawn",
-          name: "Dawn",
+          name: "Рассвет",
           firstNight: dawnIndex,
-          firstNightReminder: "Wait a few seconds. End the Night Phase.",
+          firstNightReminder:
+            "Подождите несколько секунд. Завершите ночную фазу.",
           players: [],
         });
       }
@@ -169,23 +170,23 @@ export default {
         if (minionIndex > 0) {
           rolesFirstNight.push({
             id: "minioninfo",
-            name: "Minion info",
+            name: "Информация Приспешникам",
             firstNight: minionIndex,
             team: "minion",
             players: this.players.filter((p) => p.role.team === "minion"),
             firstNightReminder:
-              "If there are 7 or more players, wake all Minions: Show the *THIS IS THE DEMON* token. Point to the Demon. Show the *THESE ARE YOUR MINIONS* token. Point to the other Minions.",
+              "Если игроков 7 или более, разбудите всех Приспешников: покажите жетон *ЭТО ДЕМОН*. Укажите на Демона. Покажите жетон *ЭТО ВАШИ ПРИСПЕШНИКИ*. Укажите на других Приспешников.",
           });
         }
         if (demonIndex > 0) {
           rolesFirstNight.push({
             id: "demoninfo",
-            name: "Demon info & bluffs",
+            name: "Информация Демону и блефы",
             firstNight: demonIndex,
             team: "demon",
             players: this.players.filter((p) => p.role.team === "demon"),
             firstNightReminder:
-              "If there are 7 or more players, wake the Demon: Show the *THESE ARE YOUR MINIONS* token. Point to all Minions. Show the *THESE CHARACTERS ARE NOT IN PLAY* token. Show 3 not-in-play good character tokens.",
+              "Если игроков 7 или более, разбудите Демона: покажите жетон *ЭТО ВАШИ ПРИСПЕШНИКИ*. Укажите на всех Приспешников. Покажите жетон *ЭТИ ПЕРСОНАЖИ НЕ В ИГРЕ*. Покажите 3 жетона добрых персонажей, отсутствующих в игре.",
           });
         }
       }
@@ -243,18 +244,19 @@ export default {
       if (duskIndex > 0) {
         rolesOtherNight.push({
           id: "dusk",
-          name: "Dusk",
+          name: "Сумерки",
           otherNight: duskIndex,
-          otherNightReminder: "Start the Night Phase.",
+          otherNightReminder: "Начните ночную фазу.",
           players: [],
         });
       }
       if (dawnIndex > 0) {
         rolesOtherNight.push({
           id: "dawn",
-          name: "Dawn",
+          name: "Рассвет",
           otherNight: dawnIndex,
-          otherNightReminder: "Wait for a few seconds. End the Night Phase.",
+          otherNightReminder:
+            "Подождите несколько секунд. Завершите ночную фазу.",
           players: [],
         });
       }

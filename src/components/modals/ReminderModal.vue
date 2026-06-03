@@ -1,6 +1,6 @@
 <template>
   <Modal v-if="isDisplayed" @close="toggleModal('reminder')">
-    <h3>Choose a reminder token:</h3>
+    <h3>Выберите жетон-напоминание:</h3>
     <ul class="reminders">
       <li
         v-for="reminder in availableReminders"
@@ -30,7 +30,7 @@
     <input
       ref="searchInput"
       class="reminder-search"
-      placeholder="Search"
+      placeholder="Поиск"
       v-model="query"
       @keyup="keyup"
     />
@@ -130,9 +130,9 @@ export default {
         }
       });
 
-      reminders.push({ imageAlt: "good", name: "Good" });
-      reminders.push({ imageAlt: "evil", name: "Evil" });
-      reminders.push({ imageAlt: "custom", name: "Custom Note" });
+      reminders.push({ imageAlt: "good", name: "Добрый" });
+      reminders.push({ imageAlt: "evil", name: "Злой" });
+      reminders.push({ imageAlt: "custom", name: "Своя заметка" });
       return reminders;
     },
     isDisplayed() {
@@ -156,7 +156,7 @@ export default {
       const player = this.$store.state.players.players[this.playerIndex];
       let value;
       if (reminder.imageAlt === "custom") {
-        const name = prompt("Add a custom reminder note");
+        const name = prompt("Добавьте свою заметку-напоминание");
         if (!name) return;
         value = [...player.reminders, { imageAlt: "custom", name }];
       } else {

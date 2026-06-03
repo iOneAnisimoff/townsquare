@@ -7,8 +7,8 @@
             v-if="playerIndex >= 0 && players.length"
             class="button alignment"
             :class="{
-              townsfolk: alignment === 'Good',
-              demon: alignment === 'Evil',
+              townsfolk: alignment === 'Добрая',
+              demon: alignment === 'Злая',
             }"
             @click="toggleAlignment"
             >{{ alignment }}</span
@@ -17,11 +17,11 @@
       </li>
       <li>
         <h3>
-          Choose a new character for
+          Выберите нового персонажа для
           {{
             playerIndex >= 0 && players.length
               ? players[playerIndex].name
-              : "bluffing"
+              : "блефа"
           }}:
         </h3>
       </li>
@@ -45,20 +45,20 @@
         :class="{ townsfolk: tab === 'editionRoles' }"
         @click="tab = 'editionRoles'"
       >
-        Edition Roles
+        Роли издания
       </span>
       <span
         class="button"
         :class="{ townsfolk: tab === 'otherTravellers' }"
         @click="tab = 'otherTravellers'"
       >
-        Other Travellers
+        Другие путешественники
       </span>
     </div>
     <input
       ref="searchInput"
       class="role-search"
-      placeholder="Search"
+      placeholder="Поиск"
       v-model="query"
       @keyup="keyup"
     />
@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       tab: "editionRoles",
-      alignment: "Regular",
+      alignment: "Обычная",
       query: "",
     };
   },
@@ -135,17 +135,17 @@ export default {
       this.$store.commit("toggleModal", "role");
     },
     toggleAlignment() {
-      if (this.alignment === "Regular") this.alignment = "Good";
-      else if (this.alignment === "Good") this.alignment = "Evil";
-      else this.alignment = "Regular";
+      if (this.alignment === "Обычная") this.alignment = "Добрая";
+      else if (this.alignment === "Добрая") this.alignment = "Злая";
+      else this.alignment = "Обычная";
     },
     getAlignmentIndex(role) {
-      if (this.alignment === "Evil") {
+      if (this.alignment === "Злая") {
         if (role.team === "traveller") return 2;
         else if (role.team !== "minion" && role.team !== "demon") return 1;
       }
       if (
-        this.alignment === "Good" &&
+        this.alignment === "Добрая" &&
         (role.team === "traveller" ||
           role.team === "minion" ||
           role.team === "demon")
@@ -183,7 +183,7 @@ export default {
     isDisplayed(shown) {
       if (shown) {
         this.tab = "editionRoles";
-        this.alignment = "Regular";
+        this.alignment = "Обычная";
         this.query = "";
         this.$nextTick(() => this.$refs.searchInput.focus());
       }

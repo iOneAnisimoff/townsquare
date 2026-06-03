@@ -8,11 +8,11 @@
       @click="clearVoteHistory"
       icon="trash-alt"
       class="clear"
-      title="Clear vote history"
+      title="Очистить историю голосований"
       v-if="session.isSpectator"
     />
 
-    <h3>Vote history</h3>
+    <h3>История голосований</h3>
 
     <template v-if="!session.isSpectator">
       <div class="options">
@@ -23,26 +23,26 @@
               session.isVoteHistoryAllowed ? 'check-square' : 'square',
             ]"
           />
-          Accessible to players
+          Доступно игрокам
         </div>
         <div class="option" @click="clearVoteHistory">
           <font-awesome-icon icon="trash-alt" />
-          Clear for everyone
+          Очистить для всех
         </div>
       </div>
     </template>
     <table>
       <thead>
         <tr>
-          <td>Time</td>
-          <td>Nominator</td>
-          <td>Nominee</td>
-          <td>Type</td>
-          <td>Votes</td>
-          <td>Majority</td>
+          <td>Время</td>
+          <td>Номинирующий</td>
+          <td>Номинируемый</td>
+          <td>Тип</td>
+          <td>Голоса</td>
+          <td>Большинство</td>
           <td>
             <font-awesome-icon icon="user-friends" />
-            Voters
+            Голосовавшие
           </td>
         </tr>
       </thead>

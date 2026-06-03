@@ -1,6 +1,6 @@
 <template>
   <Modal v-if="isDisplayed" @close="toggleModal('npc')">
-    <h3>Choose a {{ type }} character to add to the game:</h3>
+    <h3>Выберите персонажа для добавления в игру:</h3>
     <ul class="tokens">
       <li v-for="role in displayedRoles" :key="role.id" @click="setNpcs(role)">
         <Token :role="role" />
@@ -12,14 +12,14 @@
         :class="{ townsfolk: type === 'fabled' }"
         @click="type = 'fabled'"
       >
-        Fabled
+        Легендарные
       </span>
       <span
         class="button"
         :class="{ townsfolk: type === 'loric' }"
         @click="type = 'loric'"
       >
-        Loric
+        Лорик
       </span>
     </div>
   </Modal>

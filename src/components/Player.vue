@@ -91,7 +91,7 @@
         class="has-vote"
         v-if="player.isDead && !player.isVoteless"
         @click="updatePlayer('isVoteless', true)"
-        title="Ghost vote"
+        title="Голос призрака"
       />
 
       <!-- Two votes icon -->
@@ -100,7 +100,7 @@
         class="two-votes"
         v-if="player.hasTwoVotes"
         @click="updatePlayer('hasTwoVotes', false)"
-        title="Has two votes"
+        title="Имеет два голоса"
       />
 
       <!-- Overlay icons -->
@@ -109,43 +109,43 @@
         <font-awesome-icon
           icon="hand-paper"
           class="vote first-vote"
-          title="Hand UP"
+          title="Рука поднята"
           @click="vote(player)"
         />
         <font-awesome-icon
           icon="hand-paper"
           class="vote second-vote"
-          title="Second Hand UP"
+          title="Вторая рука поднята"
         />
         <font-awesome-icon
           icon="times"
           class="vote"
-          title="Hand DOWN"
+          title="Рука опущена"
           @click="vote(player)"
         />
         <font-awesome-icon
           icon="times-circle"
           class="cancel"
-          title="Cancel"
+          title="Отмена"
           @click="cancel()"
         />
         <font-awesome-icon
           icon="exchange-alt"
           class="swap"
           @click="swapPlayer(player)"
-          title="Swap seats with this player"
+          title="Поменяться местами с этим игроком"
         />
         <font-awesome-icon
           icon="redo-alt"
           class="move"
           @click="movePlayer(player)"
-          title="Move player to this seat"
+          title="Переместить игрока на это место"
         />
         <font-awesome-icon
           icon="hand-point-right"
           class="nominate"
           @click="nominatePlayer(player)"
-          title="Nominate this player"
+          title="Номинировать этого игрока"
         />
       </div>
 
@@ -175,11 +175,11 @@
             "
           >
             <font-awesome-icon icon="hand-paper" />
-            Raise Hand
+            Поднять руку
           </li>
           <li @click="changeAlignment" v-if="player.role.id">
             <font-awesome-icon icon="yin-yang" />
-            Change Alignment
+            Сменить сторону
           </li>
           <li
             @click="changePronouns"
@@ -191,7 +191,7 @@
             "
           >
             <font-awesome-icon icon="venus-mars" />
-            Change Pronouns
+            Сменить местоимения
           </li>
           <li
             @click="changeName"
@@ -204,7 +204,7 @@
             "
           >
             <font-awesome-icon icon="user-edit" />
-            Rename
+            Переименовать
           </li>
           <template v-if="!session.isSpectator">
             <li
@@ -212,31 +212,31 @@
               v-if="session.isTwoVotesEnabled"
             >
               <font-awesome-icon icon="sign-language" class="two-votes-icon" />
-              Has Two Votes
+              Имеет два голоса
             </li>
             <li @click="movePlayer()" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="redo-alt" />
-              Move Player
+              Переместить игрока
             </li>
             <li @click="swapPlayer()" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="exchange-alt" />
-              Swap Seats
+              Поменять места
             </li>
             <li @click="removePlayer" :class="{ disabled: session.lockedVote }">
               <font-awesome-icon icon="times-circle" />
-              Remove
+              Удалить
             </li>
             <li
               @click="updatePlayer('id', '', true)"
               v-if="player.id && session.sessionId"
             >
               <font-awesome-icon icon="chair" />
-              Empty Seat
+              Освободить место
             </li>
             <template v-if="!session.nomination">
               <li @click="nominatePlayer()">
                 <font-awesome-icon icon="hand-point-right" />
-                {{ isNominating ? "Cancel Nomination" : "Nomination" }}
+                {{ isNominating ? "Отменить номинацию" : "Номинация" }}
               </li>
             </template>
           </template>
@@ -252,12 +252,12 @@
                 (player.id === session.playerId && !player.connected)
               "
             >
-              Claim seat</template
+              Занять место</template
             >
             <template v-else-if="player.id === session.playerId">
-              Vacate Seat
+              Покинуть место
             </template>
-            <template v-else> Seat Occupied</template>
+            <template v-else> Место занято</template>
           </li>
         </ul>
       </transition>
@@ -371,7 +371,7 @@ export default {
     changePronouns() {
       if (this.session.isSpectator && this.player.id !== this.session.playerId)
         return;
-      const pronouns = prompt("Player pronouns", this.player.pronouns);
+      const pronouns = prompt("Местоимения игрока", this.player.pronouns);
       //Only update pronouns if not null (prompt was not cancelled)
       if (pronouns !== null) {
         this.updatePlayer("pronouns", pronouns, true);
@@ -401,7 +401,7 @@ export default {
       }
     },
     changeName() {
-      const name = prompt("Player name", this.player.name) || this.player.name;
+      const name = prompt("Имя игрока", this.player.name) || this.player.name;
       if (name !== null && name !== "") {
         this.updatePlayer("name", name, true);
       }
@@ -456,14 +456,14 @@ export default {
     setSeatTitle() {
       if (this.player.connected) {
         if (this.player.id === this.session.playerId) {
-          return "Your claimed seat";
+          return "Ваше занятое место";
         }
-        return "Seat claimed by " + this.player.name;
+        return "Место занято игроком " + this.player.name;
       } else {
         if (this.player.id === this.session.playerId) {
-          return "Your reserved seat. Click 'Claim seat' to reconnect";
+          return "Ваше зарезервированное место. Нажмите «Занять место», чтобы переподключиться";
         }
-        return "Seat reserved for " + this.player.name;
+        return "Место зарезервировано для " + this.player.name;
       }
     },
     /**

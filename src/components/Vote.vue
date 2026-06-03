@@ -6,20 +6,20 @@
     </div>
     <div class="overlay">
       <audio src="../assets/sounds/countdown.mp3" preload="auto"></audio>
-      <em class="blue">{{ nominator.name }}</em> nominated
+      <em class="blue">{{ nominator.name }}</em> номинировал(а)
       <em>{{ nominee.name }}</em
       >!
       <br />
       <template v-if="!session.isSpectator || session.isVoteWatchingAllowed">
         <em class="blue">
-          {{ voteCount }} vote{{ voteCount !== 1 ? "s" : "" }}
+          {{ voteCount }} голос{{ voteCount !== 1 ? "ов" : "" }}
         </em>
-        in favor
+        за
       </template>
       <em v-if="nominee.role.team !== 'traveller'">
-        (majority is {{ Math.ceil(alive / 2) }})
+        (большинство — {{ Math.ceil(alive / 2) }})
       </em>
-      <em v-else>(majority is {{ Math.ceil(players.length / 2) }})</em>
+      <em v-else>(большинство — {{ Math.ceil(players.length / 2) }})</em>
 
       <template v-if="!session.isSpectator">
         <div
@@ -30,12 +30,12 @@
           "
           class="buttons"
         >
-          Time per player:
+          Время на игрока:
           <font-awesome-icon
             @mousedown.prevent="setVotingSpeed(-100)"
             icon="minus-circle"
           />
-          {{ session.votingSpeed / 1000 }}s
+          {{ session.votingSpeed / 1000 }}с
           <font-awesome-icon
             @mousedown.prevent="setVotingSpeed(100)"
             icon="plus-circle"
@@ -50,7 +50,7 @@
         >
           <em>
             <font-awesome-icon icon="exclamation-triangle" />
-            Some seats are unoccupied
+            Некоторые места не заняты
             <font-awesome-icon icon="exclamation-triangle" />
           </em>
         </div>
@@ -60,10 +60,10 @@
             v-if="!session.isVoteInProgress"
             @click="countdown"
           >
-            Countdown
+            Обратный отсчёт
           </div>
           <div class="button" v-if="!session.isVoteInProgress" @click="start">
-            {{ session.lockedVote ? "Restart" : "Start" }}
+            {{ session.lockedVote ? "Перезапустить" : "Старт" }}
           </div>
           <template v-else>
             <div
@@ -71,11 +71,11 @@
               :class="{ disabled: !session.lockedVote }"
               @click="pause"
             >
-              {{ voteTimer ? "Pause" : "Resume" }}
+              {{ voteTimer ? "Пауза" : "Продолжить" }}
             </div>
-            <div class="button" @click="stop">Reset</div>
+            <div class="button" @click="stop">Сброс</div>
           </template>
-          <div class="button demon" @click="finish">Close</div>
+          <div class="button demon" @click="finish">Закрыть</div>
         </div>
         <div class="button-group mark" v-if="nominee.role.team !== 'traveller'">
           <div
@@ -85,14 +85,14 @@
             }"
             @click="setMarked"
           >
-            Mark for execution
+            Отметить для казни
           </div>
-          <div class="button" @click="removeMarked">Clear mark</div>
+          <div class="button" @click="removeMarked">Снять отметку</div>
         </div>
       </template>
       <template v-else-if="canVote">
         <div v-if="session.isVoteWatchingAllowed && !session.isVoteInProgress">
-          {{ session.votingSpeed / 1000 }} seconds between votes
+          {{ session.votingSpeed / 1000 }} секунд между голосами
         </div>
         <div class="button-group">
           <div
@@ -100,14 +100,14 @@
             @click="vote(0)"
             :class="{ disabled: !currentVote }"
           >
-            Hand DOWN
+            Рука опущена
           </div>
           <div
             class="button demon"
             @click="vote(1)"
             :class="{ disabled: currentVote === 1 }"
           >
-            Hand UP
+            Рука поднята
           </div>
           <div
             class="button demon"
@@ -119,8 +119,10 @@
           </div>
         </div>
       </template>
-      <div v-else-if="!player">Please claim a seat to vote.</div>
-      <div v-else-if="!player.connected">Please reclaim your seat to vote.</div>
+      <div v-else-if="!player">Займите место, чтобы голосовать.</div>
+      <div v-else-if="!player.connected">
+        Переподключитесь к своему месту, чтобы голосовать.
+      </div>
     </div>
     <transition name="blur">
       <div
@@ -130,7 +132,7 @@
         <span>3</span>
         <span>2</span>
         <span>1</span>
-        <span>GO</span>
+        <span>ВПЕРЁД</span>
         <audio
           :autoplay="!grimoire.isMuted"
           src="../assets/sounds/countdown.mp3"

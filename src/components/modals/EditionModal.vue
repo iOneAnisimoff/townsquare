@@ -1,7 +1,7 @@
 <template>
   <Modal class="editions" v-if="modals.edition" @close="toggleModal('edition')">
     <div v-if="!isCustom">
-      <h3>Select an edition:</h3>
+      <h3>Выберите издание:</h3>
       <ul class="editions">
         <li
           v-for="edition in editions"
@@ -24,47 +24,47 @@
             backgroundImage: `url(${require('../../assets/editions/custom.webp')})`,
           }"
         >
-          Custom Script / Characters
+          Свой сценарий / персонажи
         </li>
       </ul>
     </div>
     <div class="custom" v-else>
-      <h3>Load custom script / characters</h3>
-      To write your own custom script, you need to select the characters you
-      want to play with in the official
+      <h3>Загрузить свой сценарий / персонажей</h3>
+      Чтобы написать собственный сценарий, выберите персонажей, с которыми вы
+      хотите играть, в официальном
       <a href="https://script.bloodontheclocktower.com/" target="_blank"
-        >Script Tool</a
+        >Конструкторе сценариев</a
       >
-      and then upload the generated JSON either directly here or provide a URL
-      to a hosted file. There are also a multitude of existing popular custom
-      scripts, many of which can be found at
+      и затем загрузите сгенерированный JSON прямо здесь или укажите URL на
+      размещённый файл. Также существует множество популярных готовых
+      сценариев, многие из которых можно найти на
       <a href="https://botcscripts.com/?sort=num_favs" target="_blank"
         >botcscripts.com</a
       >.<br />
       <br />
-      To play with your own homebrew characters, please read
+      Чтобы играть со своими самодельными персонажами, прочитайте
       <a
         href="https://github.com/nicholas-eden/townsquare#custom-character-support"
         target="_blank"
-        >the documentation</a
+        >документацию</a
       >
-      on how to write a custom character JSON object.
-      <b>Only load JSON files from sources that you trust!</b>
-      <h3>Some popular custom scripts:</h3>
+      о том, как составить JSON-объект пользовательского персонажа.
+      <b>Загружайте JSON-файлы только из источников, которым доверяете!</b>
+      <h3>Несколько популярных пользовательских сценариев:</h3>
       <ul class="scripts">
         <li
           v-for="(script, index) in customs.teensyville"
           :key="index"
           @click="parseRoles(script)"
         >
-          {{ script[0].name + " by " + script[0].author + " (Teensyville)" }}
+          {{ script[0].name + " от " + script[0].author + " (Teensyville)" }}
         </li>
         <li
           v-for="(script, index) in customs.standard"
           :key="index + customs.teensyville.length"
           @click="parseRoles(script)"
         >
-          {{ script[0].name + " by " + script[0].author }}
+          {{ script[0].name + " от " + script[0].author }}
         </li>
       </ul>
       <input
@@ -75,16 +75,16 @@
       />
       <div class="button-group">
         <div class="button" @click="openUpload">
-          <font-awesome-icon icon="file-upload" /> Upload JSON
+          <font-awesome-icon icon="file-upload" /> Загрузить JSON
         </div>
         <div class="button" @click="promptURL">
-          <font-awesome-icon icon="link" /> Enter URL
+          <font-awesome-icon icon="link" /> Указать URL
         </div>
         <div class="button" @click="readFromClipboard">
-          <font-awesome-icon icon="clipboard" /> Use JSON from Clipboard
+          <font-awesome-icon icon="clipboard" /> JSON из буфера обмена
         </div>
         <div class="button" @click="isCustom = false">
-          <font-awesome-icon icon="undo" /> Back
+          <font-awesome-icon icon="undo" /> Назад
         </div>
       </div>
     </div>
@@ -123,7 +123,7 @@ export default {
             this.parseRoles(roles);
           } catch (e) {
             console.log(e);
-            alert("Error reading custom script: " + e.message);
+            alert("Ошибка чтения пользовательского сценария: " + e.message);
           }
           this.$refs.upload.value = "";
         });
@@ -131,7 +131,7 @@ export default {
       }
     },
     promptURL() {
-      const url = prompt("Enter URL to a custom-script.json file");
+      const url = prompt("Введите URL к файлу custom-script.json");
       if (url) {
         this.handleURL(url);
       }
@@ -144,7 +144,7 @@ export default {
           this.parseRoles(script);
         } catch (e) {
           console.log(e);
-          alert("Error loading custom script: " + e.message);
+          alert("Ошибка загрузки пользовательского сценария: " + e.message);
         }
       }
     },

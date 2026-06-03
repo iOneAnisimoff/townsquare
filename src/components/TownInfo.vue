@@ -12,12 +12,12 @@
       }"
     ></li>
     <li v-if="players.length - teams.traveller < 5">
-      Please add more players!
+      Пожалуйста, добавьте игроков!
     </li>
     <li>
       <span class="meta" v-if="!(edition.isOfficial || edition.hideTitle)">
         {{ edition.name }}
-        {{ edition.author ? "by " + edition.author : "" }}
+        {{ edition.author ? "автор: " + edition.author : "" }}
       </span>
       <span>
         {{ players.length }} <font-awesome-icon class="players" icon="users" />
@@ -64,7 +64,7 @@
         />
       </span>
       <span v-if="grimoire.isNight">
-        Night phase
+        Ночная фаза
         <font-awesome-icon :icon="['fas', 'cloud-moon']" />
       </span>
     </li>
