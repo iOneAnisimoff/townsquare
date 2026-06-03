@@ -1,5 +1,4 @@
-# Normalize line endings: store text files with LF in the repo,
-# and let Git check them out with the platform-native ending.
-# Combined with prettier's "endOfLine": "auto", this prevents the
-# "Delete `␍`" (CRLF) lint warnings on Windows.
-* text=auto
+# Force LF line endings in the repository AND in the working tree on every
+# OS (overrides a local core.autocrlf=true on Windows). This keeps prettier's
+# "endOfLine": "lf" happy everywhere and prevents the "Delete `␍`" warnings.
+* text=auto eol=lf
