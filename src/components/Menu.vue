@@ -5,7 +5,9 @@
       v-show="session.voteHistory.length && session.sessionId"
       @click="toggleModal('voteHistory')"
       :title="`${session.voteHistory.length} ${
-        session.voteHistory.length == 1 ? 'недавняя номинация' : 'недавних номинаций'
+        session.voteHistory.length == 1
+          ? 'недавняя номинация'
+          : 'недавних номинаций'
       }`"
     >
       <font-awesome-icon icon="book-dead" />
@@ -135,7 +137,8 @@
           <template v-else>
             <li v-if="session.ping">
               <small>
-                Задержка до {{ session.isSpectator ? "Рассказчика" : "Игроков" }}
+                Задержка до
+                {{ session.isSpectator ? "Рассказчика" : "Игроков" }}
               </small>
               <em>{{ session.ping }}мс</em>
             </li>
@@ -342,8 +345,7 @@ export default {
     },
     distributeRoles() {
       if (this.session.isSpectator) return;
-      const popup =
-        "Раздать назначенных персонажей всем РАССАЖЕННЫМ игрокам?";
+      const popup = "Раздать назначенных персонажей всем РАССАЖЕННЫМ игрокам?";
       if (confirm(popup)) {
         this.$store.commit("session/distributeRoles", true);
         setTimeout(

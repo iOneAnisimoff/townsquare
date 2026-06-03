@@ -3,8 +3,8 @@
     <img src="static/apple-icon.png" alt="" class="logo" />
     <div>
       Добро пожаловать в (неофициальную)
-      <b>Виртуальную Городскую Площадь и Гримуар</b> для Blood on the Clocktower!
-      Пожалуйста, добавьте игроков через
+      <b>Виртуальную Городскую Площадь и Гримуар</b> для Blood on the
+      Clocktower! Пожалуйста, добавьте игроков через
       <span class="button" @click="toggleMenu">
         <font-awesome-icon icon="cog" /> Меню
       </span>
